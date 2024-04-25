@@ -31,32 +31,34 @@ config.read('config.ini', encoding='utf-8')
 
 driver = webdriver.Chrome(options)
 
-driver.get('https://qa.altools.co.kr/')
+driver.get(config['ADDRESS']['URL'])
 time.sleep(2)
 #수정해본다
 #깃에서수정한다.
-driver.close()
+#driver.close()
 
-
-"""
+# '계속' 버튼 클릭
+driver.find_element(By.XPATH, "//button[contains(text(), '로그인')]").click()
+time.sleep(1)
+driver.find_element(By.XPATH, "//button[contains(text(), '아이디 로그인')]").click()
+time.sleep(1)
 
 
 # place holder 텍스트중 일부만 일치해도 찾을수 있게 함
 WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//input[contains(@placeholder, 'Email')]"))
-).send_keys(config['ACCOUNT']['EMAIL'])
+    EC.presence_of_element_located((By.XPATH, "//input[contains(@placeholder, '아이디')]"))
+).send_keys(config['ACCOUNT']['ID'])
 
-# '계속' 버튼 클릭
-driver.find_element(By.XPATH, "//button[contains(text(), 'Continue')]").click()
 
 # 비밀번호 입력
 WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//input[contains(@placeholder, 'Please')]"))
+    EC.presence_of_element_located((By.XPATH, "//input[contains(@placeholder, '비밀번호')]"))
 ).send_keys(config['ACCOUNT']['PW'])
 
-# '확인' 버튼 클릭
-driver.find_element(By.XPATH, "//button[contains(text(), 'Confirm')]").click()
+# '로그인' 버튼 클릭
+driver.find_element(By.XPATH, "//button[contains(text(), '로그인')]").click()
 
+"""
 # 사이트 언어 설정을 국문으로 변경
 WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, 'a[data-lang="ko"]'))
@@ -173,4 +175,5 @@ except:
 
 
 #print(driver.window_handles)
+
 """
