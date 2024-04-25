@@ -34,7 +34,7 @@ driver = webdriver.Chrome(options)
 driver.get('https://qa.altools.co.kr/')
 time.sleep(2)
 #수정해본다
-#깃에서 수정한다.
+#깃에서수정한다.
 driver.close()
 
 
